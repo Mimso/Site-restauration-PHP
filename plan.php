@@ -1,6 +1,7 @@
 <?php
 include_once('app/app.php');
-load_header('Plan');
+$page_name = 'Plan';
+load_header($page_name);
 ?>
 
 <?php

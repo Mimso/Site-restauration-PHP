@@ -14,8 +14,11 @@ class User {
         $this->result = $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getUsername() {
-        return $this->result['username'];
+    public function getFirstName() {
+        return $this->result['firstname'];
+    }
+    public function getLastName() {
+        return $this->result['lastname'];
     }
 
     public function getEmail() {

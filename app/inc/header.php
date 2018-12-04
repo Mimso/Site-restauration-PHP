@@ -2,6 +2,7 @@
 if(isset($_COOKIE['user'])) {
   $user = new User($_COOKIE['user']);
 }
+$session = new SessionManagment();
 ?>
 <html lang="fr">
 <head>
@@ -15,7 +16,8 @@ if(isset($_COOKIE['user'])) {
 
     <!-- Bootstrap core CSS -->
     <link href="<?= resources_uri; ?>/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= resources_uri; ?>/css/style.css" rel="stylesheet">
+    <!-- cache remove for dev -->
+    <link href="<?= resources_uri; ?>/css/style.css?v=<?= rand(); ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -54,7 +56,7 @@ if(isset($_COOKIE['user'])) {
             <?php if(isset($_COOKIE['user'])) { ?>
              <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" <?= $user->isAdmin() ? 'style="color:  #009933"' : '' ?> href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?= ucfirst($user->getUsername()); ?></a>
+                    <a class="nav-link dropdown-toggle" <?= $user->isAdmin() ? 'style="color:  #009933"' : '' ?> href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?= ucfirst($user->getLastName()) .'&nbsp;'. strtoupper($user->getFirstName()); ?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                          <?= $user->isAdmin() ? '<a class="dropdown-item" style="color: #009933" href="' . root_folder . '/admin/"><i class="fas fa-cog"></i> Panel Admin</a>' : ''; ?>
                         <a class="dropdown-item" href="<?= root_folder; ?>/member.php"><i class="fas fa-user-circle"></i> Mon profil</a>
@@ -62,7 +64,7 @@ if(isset($_COOKIE['user'])) {
                         <div class="dropdown-divider"></div>
 
                         <div class="text-center">
-                            <a href="<?= root_folder; ?>/process/logout-process.php"><button type="button" class="btn" style="background-color: rgba(255,0,14,0.7);"><i class="fas fa-sign-out-alt"></i><strong> Déconnexion</strong></button></a>
+                            <a href="<?= root_folder; ?>/process/logout-process.php"><button type="button" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i><strong> Déconnexion</strong></button></a>
                         </div>
                     </div>
                 </li>
@@ -82,3 +84,32 @@ if(isset($_COOKIE['user'])) {
     </div>
 
 </nav>
+
+<?php if($page_name != 'Accueil') { ?>
+    <div class="container">
+        <nav style="padding-top: 20px;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?= root_folder; ?>/index.php">Accueil</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $page_name; ?></li>
+            </ol>
+        </nav>
+<?php
+}
+
+if($session->isValid('message')) { ?>
+<div id="alert-message" style="padding-top: 15px; padding-bottom: 10px;" class="col-md-4 offset-4">
+    <div class="alert <?= $session->flash('message-box-color'); ?> alert-dismissible fade show" role="alert">
+        <?= $session->flash('message'); ?>
+        <button onclick="alertRemove()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    function alertRemove() {
+        document.getElementById('alert-message').style.cssText = 'padding-top: 0px; padding-bottom: 0px;';
+    }
+</script>
+
+<?php } ?>

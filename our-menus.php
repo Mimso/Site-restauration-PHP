@@ -1,4 +1,5 @@
 <?php
 include_once('app/app.php');
-load_header('Nos menus');
+$page_name = 'Nos menus';
+load_header($page_name);
 ?>

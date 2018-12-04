@@ -1,5 +1,5 @@
 body {
-    padding-top: 75px;
+    padding-top: 55px;
 }
 .ml-auto .dropdown-menu {
     left: auto !important;
@@ -14,5 +14,12 @@ td, th {
     padding: 10px 40px 60px;
     margin: 10px 0px 60px;
     border: 1px solid GREY;
+}
+.card-custom {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
 }
 

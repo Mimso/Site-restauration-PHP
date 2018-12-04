@@ -16,6 +16,9 @@ if($user->isAdmin() == false) {
     header('location: ' . root_folder . '/index.php');
 }
 
-echo "Bienvenue Admin";
+load_header('Panel Administration');
+
+load_footer();
+
 
 ?>

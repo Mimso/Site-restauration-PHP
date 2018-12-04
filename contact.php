@@ -1,4 +1,7 @@
 <?php
 include_once('app/app.php');
-load_header('Nous contacter');
+$page_name = 'Nous contacter';
+
+load_header($page_name);
+
 ?>

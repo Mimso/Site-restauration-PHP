@@ -1,4 +1,7 @@
 <?php
 include_once('app/app.php');
-load_header('Réservation');
+$page_name = 'Réservation';
+
+load_header($page_name);
+
 ?>

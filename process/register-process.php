@@ -12,7 +12,7 @@ if(isset($_COOKIE['user'])) {
 }
 
 /* verification du bon envoie des données */
-if(empty($username) OR empty($password) OR empty($password2) OR empty($email) OR empty($postal) OR empty($birthday)) {
+if(empty($_POST['firstname']) OR empty($_POST['lastname']) OR empty($_POST['password']) OR empty($_POST['password2') OR empty($_POST['email']) OR empty($_POST['postal']) OR empty($_POST['birthday']) OR empty($_POST['phone'])) {
     $session->create('message', 'Erreur, un des champs est manquant.');
     $session->create('message-box-color', 'alert-danger');
 
@@ -23,7 +23,8 @@ if(empty($username) OR empty($password) OR empty($password2) OR empty($email) OR
  * definition des variables avec une fonction anti injection SQL
  * @link https://php.net/manual/en/function.htmlspecialchars.php
  */
-$username = htmlspecialchars($_POST['username']);
+$firstname = htmlspecialchars($_POST['firstname']);
+$lastname = htmlspecialchars($_POST['lastname']);
 $password = htmlspecialchars($_POST['password']);
 $password2 = htmlspecialchars($_POST['password2']);
 $email = htmlspecialchars($_POST['email']);
@@ -54,10 +55,11 @@ if($query->rowCount()) {
     header('location: ' . root_folder . '/register.php');
     exit();
 } else {
-    $query = $pdo->pdo_start()->prepare("INSERT INTO `users`(`email`, `username`, `password`, `phone`, `birthday`, `postal`) VALUES (?,?,?,?,?,?)");
+    $query = $pdo->pdo_start()->prepare("INSERT INTO `users`(`email`, `firstname`, `lastname`, `password`, `phone`, `birthday`, `postal`) VALUES (?,?,?,?,?,?,?)");
     $query->execute([
         $email,
-        $username,
+        $firstname,
+        $lastname,
         md5($password),
         $phone,
         $birthday,

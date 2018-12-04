@@ -1,7 +1,8 @@
 <?php
 
 include_once('app/app.php');
-load_header('Connexion');
+$page_name = 'Connexion';
+
 
 if(isset($_COOKIE['user'])) {
 
@@ -10,27 +11,11 @@ if(isset($_COOKIE['user'])) {
 
     header('location: ' . root_folder . '/index.php');
 
-} else { ?>
+} else {
 
-    <!-- PAGE CONTENT -->
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./index.php">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Connexion</li>
-            </ol>
-        </nav>
+    load_header($page_name);
 
-        <?php if($session->isValid('message')) { ?>
-            <div class="col-md-8 offset-2">
-                <div class="alert <?= $session->flash('message-box-color'); ?> alert-dismissible fade show" role="alert">
-                    <?= $session->flash('message'); ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
-        <?php } ?>
+?>
 
         <div class="offset-2 col-md-8 col-xs-2">
             <div class="form-area text-center">
@@ -47,6 +32,6 @@ if(isset($_COOKIE['user'])) {
                 </form>
             </div>
         </div>
-    </div>
+
 
 <?php load_footer(); } ?>
