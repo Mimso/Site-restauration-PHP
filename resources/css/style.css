@@ -22,4 +22,6 @@ td, th {
     border: 1px solid #ddd;
     padding: 5px;
 }
-
+#map{
+    height:400px;
+}

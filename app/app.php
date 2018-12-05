@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-const SITE_NAME = "Restaurant";
+const SITE_NAME = "Central Burger";
 const resources_uri = "http://localhost:8090/restaurant/resources";
 const root_folder = "http://localhost:8090/restaurant";
 

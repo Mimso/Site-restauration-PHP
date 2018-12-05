@@ -17,23 +17,23 @@ load_header($page_name);
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" height="480px" width="100%"  src="resources/images/carousel.1.jpg" alt="First slide">
+                <img class="d-block w-100" height="540px" width="100%"  src="resources/images/carousel.1.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Bienvenue sur notre site</h5>
                     <p>ceci est un message test</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" height="480px" width="100%" src="resources/images/carousel.2.jpg" alt="Second slide">
+                <img class="d-block w-100" height="540px" width="100%" src="resources/images/carousel.2.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" height="480px" width="100%" src="resources/images/carousel.3.jpg" alt="Third slide">
+                <img class="d-block w-100" height="540px" width="100%" src="resources/images/carousel.3.jpg" alt="Third slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" height="480px" width="100%" src="resources/images/carousel.4.jpg" alt="Fourth slide">
+                <img class="d-block w-100" height="540px" width="100%" src="resources/images/carousel.4.jpg" alt="Fourth slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" height="480px" width="100%" src="resources/images/carousel.5.jpg" alt="Five slide">
+                <img class="d-block w-100" height="540px" width="100%" src="resources/images/carousel.5.jpg" alt="Five slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

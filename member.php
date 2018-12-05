@@ -15,32 +15,49 @@ if(empty($_COOKIE['user'])) {
     load_header($page_name);
     ?>
 
-    <div class="offset-2 col-md-8">
-    <div class="card">
-        <h5 class="card-header">Information de profil</h5>
-        <div class="row card-body">
-            <div class="col-md-3" style="padding-left: 30px;">
-                <div style="padding-bottom: 10px;">
-                    <img class="card-img-top card-custom" src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($user->getEmail()))); ?>.jpg?s=300" alt="Card image cap">
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <h5 class="card-header">Information de profil</h5>
+                <div class="row card-body">
+                    <div class="col-md-3" style="padding-left: 30px;">
+                        <div style="padding-bottom: 10px;">
+                            <img class="card-img-top card-custom" src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($user->getEmail()))); ?>.jpg?s=300" alt="Card image cap">
+                        </div>
+                        <div class="text-center">
+                            <a href="<?= root_folder; ?>/process/logout-process.php" class="btn btn-danger">Déconnexion</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h5 class="card-title">
+                            Bienvenue, <span <?= $user->isAdmin() ? 'style="color:#009933;"' : ''; ?>><?= ucfirst($user->getLastName()) .'&nbsp;'. strtoupper($user->getFirstName()); ?></span>
+                            <div class="float-right">
+                                <a href="<?= root_folder; ?>/edit-profile.php" class="btn btn-info">Editer</a>
+                            </div>
+                        </h5>
+                        <span class="card-text">Email : <?= $user->getEmail(); ?></span>
+                        <br>
+                        <span class="card-text">Date de naissance : <?= date("d/m/Y", strtotime($user->getBirthday())) . ' (' . $user->getAge() . ' ans)' ?></span>
+                        <br>
+                        <span class="card-text">Ville : <?= $user->getPostal(); ?></span>
+                        <br>
+                        <span class="card-text">Numéro de Téléphone : <?= $user->getPhone(); ?></span>
+                        <br>
+                        <span class="card-text">Groupe : <?= ucfirst(strtolower($user->getPermission())); ?></span>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <a href="<?= root_folder; ?>/process/logout-process.php" class="btn btn-danger">Déconnexion</a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <h5 class="card-title">Bienvenue, <span <?= $user->isAdmin() ? 'style="color:#009933;"' : ''; ?>><?= ucfirst($user->getLastName()) .'&nbsp;'. strtoupper($user->getFirstName()); ?></span></h5>
-                <span class="card-text">Email : <?= $user->getEmail(); ?></span>
-                <br>
-                <span class="card-text">Date de naissance : <?= date("d/m/Y", strtotime($user->getBirthday())) . ' (' . $user->getAge() . ' ans)' ?></span>
-                <br>
-                <span class="card-text">Ville : <?= $user->getPostal(); ?></span>
-                <br>
-                <span class="card-text">Numéro de Téléphone : <?= $user->getPhone(); ?></span>
-                <br>
-                <span class="card-text">Groupe : <?= ucfirst(strtolower($user->getPermission())); ?></span>
             </div>
         </div>
-    </div>
+        <div class="offset-2 col-md-8">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <?php load_footer(); } ?>

@@ -27,7 +27,7 @@ $session = new SessionManagment();
     <div class="container">
 
         <a class="navbar-brand" href="<?= root_folder; ?>/index.php">
-            <img src="<?= resources_uri; ?>/images/nav_logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="<?= resources_uri; ?>/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             <?= SITE_NAME; ?>
         </a>
 
@@ -107,6 +107,10 @@ if($session->isValid('message')) { ?>
 </div>
 
 <script>
+    setTimeout(function(){
+        $('#alert-message').remove();
+    },4000);
+
     function alertRemove() {
         document.getElementById('alert-message').style.cssText = 'padding-top: 0px; padding-bottom: 0px;';
     }

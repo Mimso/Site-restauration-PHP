@@ -66,6 +66,19 @@ if($query->rowCount()) {
         $postal
     ]);
 
+    /* envoie mail confirmation */
+    $to      = $email;
+    $subject = 'Inscription de ' . $lastname . ' ' . $firstname;
+    $message = 'Bonjour ' . $lastname . ' je confirme ton inscription sur ' . SITE_NAME . ' avec l\'email : ' . $email;
+    $headers = array(
+        'From' => 'webmaster@localhost',
+        'Reply-To' => 'webmaster@localhost',
+        'X-Mailer' => 'PHP/' . phpversion()
+    );
+
+    mail($to, $subject, $message, $headers);
+    /* fin envoie mail */
+
     $session->create('message', 'Inscription réussi.');
     $session->create('message-box-color', 'alert-success');
     $pdo->pdo_close();
