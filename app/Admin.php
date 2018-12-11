@@ -3,7 +3,9 @@
 class Admin
 {
 
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     public function getUsers($offset = '0,10')
     {
@@ -35,7 +37,7 @@ class Admin
         $query = $pdo->pdo_start()->prepare("SELECT * FROM users WHERE id = ? AND permission != 'ADMIN'");
         $query->execute([$id]);
 
-        if($query->rowCount()) {
+        if ($query->rowCount()) {
             $query_delete = $pdo->pdo_start()->prepare("DELETE FROM users WHERE id = ?");
             $query_delete->execute([$id]);
             return $query_delete->rowCount();
@@ -87,7 +89,7 @@ class Admin
     public function getSupport($offset = '0,10')
     {
         $pdo = new PDOConnect();
-        $query = $pdo->pdo_start()->prepare("SELECT *, DATE_FORMAT(date,'%d/%m/%Y') AS 'short_date' FROM `contact` ORDER BY id ASC LIMIT $offset");
+        $query = $pdo->pdo_start()->prepare("SELECT *, DATE_FORMAT(date,'%d/%m/%Y') AS 'short_date' FROM `contact` WHERE complete != 1 ORDER BY id ASC LIMIT $offset");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -107,17 +109,18 @@ class Admin
         $query->execute([$id]);
 
         if ($query->rowCount()) {
-            $query_delete = $pdo->pdo_start()->prepare("DELETE FROM contact WHERE id = ?");
-            $query_delete->execute([$id]);
-            return $query_delete->rowCount();
+            $query_complete = $pdo->pdo_start()->prepare("UPDATE contact SET complete = 1 WHERE id = ?");
+            $query_complete->execute([$id]);
+            return $query_complete->rowCount();
         } else {
             return false;
         }
     }
 
-    public function getBooking($offset = '0,10') {
+    public function getBooking($offset = '0,10')
+    {
         $pdo = new PDOConnect();
-            $query = $pdo->pdo_start()->prepare("SELECT users.id AS 'user_id', users.email AS 'user_email', users.phone AS 'user_phone', reservation.id AS 'reservation_id', reservation.number AS 'reservation_number', DATE_FORMAT(reservation.date,'%d/%m/%Y') AS 'reservation_date', menu.name AS 'menu_name' FROM reservation INNER JOIN users INNER JOIN menu WHERE menu.id = reservation.menu_id ORDER BY reservation.date ASC LIMIT $offset");
+        $query = $pdo->pdo_start()->prepare("SELECT users.id AS 'user_id', users.email AS 'user_email', users.phone AS 'user_phone', reservation.id AS 'reservation_id', reservation.number AS 'reservation_number', DATE_FORMAT(reservation.date,'%d/%m/%Y') AS 'reservation_date', menu.id AS 'menu_id', menu.name AS 'menu_name' FROM reservation INNER JOIN users INNER JOIN menu WHERE users.id = reservation.users_id AND menu.id = reservation.menu_id ORDER BY reservation.date ASC LIMIT $offset");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -134,6 +137,30 @@ class Admin
             return $query_delete->rowCount();
         } else {
             return false;
+        }
+    }
+
+    public function pagination($page)
+    {
+        $page = $page * 10;
+
+        $pages = [
+            $page - 10,
+             $page,
+        ];
+        return $pages[0] < 0 ? 0 : $pages[0] . ',' . $pages[1];
+    }
+
+    public function paginationGetPageNumber($page)
+    {
+        if ($page != 1) {
+            return [
+                $page - 1,
+                $page,
+                $page + 1,
+            ];
+        } else {
+            return [0,1,2];
         }
     }
 }

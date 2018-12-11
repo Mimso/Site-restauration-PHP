@@ -7,9 +7,9 @@ const root_folder = "http://localhost:8090/restaurant";
 
 require_once('PDOConnect.php');
 require_once('SessionManagment.php');
+require_once('User.php');
 
 if(isset($_COOKIE['user'])) {
-    require_once('User.php');
     require_once('Reservation.php');
 }
 

@@ -3,21 +3,38 @@ include_once('app/app.php');
 $page_name = 'Réservation';
 
 load_header($page_name);
+include_once ('app/Menu.php');
 ?>
 
 
     <div class="offset-2 col-md-8 col-xs-2">
         <div class="form-area text-center">
-            <form id="form-contact" role="form" method="POST" action="./process/login-process.php">
+            <form id="form-contact" role="form" method="POST" action="./process/booking-process.php">
                 <br style="clear:both">
                 <h3 style="margin-bottom: 25px; text-align: center;">Effectuer une réservation</h3>
-                <div class="form-group">
 
-                </div>
+                <select class="form-control" name="menu_id">
+                <?php
+                $menu = new Menu();
+                foreach($menu->getAllMenu() as $data) {
+                ?>
+
+                 <option value="<?= $data['id']; ?>"><?= $data['name']; ?></option>
+
+                <?php } ?>
+                </select>
+                
+                <br style="clear:both">
+
                 <div class="form-group">
-                    <input type="date" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="number" class="form-control" id="number" name="number" placeholder="Nombre de reservation (maximum de 40/p par jour)" required>
                 </div>
-                <button type="submit" id="submit" name="submit" class="btn btn-primary">Connexion</button>
+
+                <div class="form-group">
+                    <input type="date" class="form-control" id="res_date" name="res_date" placeholder="Date" required>
+                </div>
+
+                <button type="submit" id="submit" name="submit" class="btn btn-primary">Reservé</button>
             </form>
         </div>
     </div>

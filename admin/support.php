@@ -10,16 +10,12 @@ load_header('Panel Administration - Support');
 require_once('../app/Admin.php');
 $admin = new Admin();
 
-// offset de la base users //
-if(empty($_GET['p']) || empty($_GET['p2'])) {
-    $offset = 0;
-    $offset2 = 10;
+// offset de la base
+if(isset($_GET['p'])) {
+    $page = $_GET['p'];
 } else {
-    $offset = $_GET['p'];
-    $offset2 = $_GET['p2'];
+    $page = 1;
 }
-
-
 ?>
     <div class="row">
 
@@ -46,7 +42,7 @@ if(empty($_GET['p']) || empty($_GET['p2'])) {
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($admin->getSupport($offset . ',' . $offset2) as $support) {?>
+                <?php foreach($admin->getSupport($admin->pagination($page)) as $support) {?>
                     <tr>
                         <th scope="row"><?= $support['id']; ?></th>
                         <td><?= $support['email']; ?></td>
@@ -61,6 +57,20 @@ if(empty($_GET['p']) || empty($_GET['p2'])) {
                 <?php } ?>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item <?= $admin->paginationGetPageNumber($page)[0] == 0 ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[0] ?>" tabindex="-1">Précédent</a>
+                    </li>
+
+                    <li class="page-item disabled"><a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[1] ?>"><?= $admin->paginationGetPageNumber($page)[1] ?></a></li>
+
+                    <li class="page-item">
+                        <a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[2] ?>">Suivant</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 

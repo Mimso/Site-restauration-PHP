@@ -9,13 +9,10 @@ load_header('Panel Administration - Menu');
 require_once('../app/Admin.php');
 $admin = new Admin();
 
-// offset de la base users //
-if(empty($_GET['p']) || empty($_GET['p2'])) {
-    $offset = 0;
-    $offset2 = 10;
+if(isset($_GET['p'])) {
+    $page = $_GET['p'];
 } else {
-    $offset = $_GET['p'];
-    $offset2 = $_GET['p2'];
+    $page = 1;
 }
 ?>
 
@@ -43,20 +40,34 @@ if(empty($_GET['p']) || empty($_GET['p2'])) {
             </tr>
             </thead>
             <tbody>
-            <?php foreach($admin->getMenu($offset . ',' . $offset2) as $menu) {?>
+            <?php foreach($admin->getMenu($admin->pagination($page)) as $menu) {?>
                 <tr>
                     <th scope="row"><?= $menu['id']; ?></th>
                     <td><?= $menu['name']; ?></td>
                     <td><?= mb_strimwidth($menu['desc'], 0, 60, '...') ?></td>
                     <td><?= $menu['price']; ?></td>
                     <td>
-                        <a href="<?= root_folder; ?>/admin/process/menu/edit.php?id=<?= $menu['id']; ?>"><button type="button" class="btn btn-sm btn-warning"><i class="fas fa-user-edit"></i></button></a>
+                        <a href="<?= root_folder; ?>/admin/process/menu/edit.php?id=<?= $menu['id']; ?>"><button type="button" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button></a>
                         <a href="<?= root_folder; ?>/admin/process/menu/delete.php?id=<?= $menu['id']; ?>"><button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></a>
                     </td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item <?= $admin->paginationGetPageNumber($page)[0] == 0 ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[0] ?>" tabindex="-1">Précédent</a>
+                </li>
+
+                <li class="page-item disabled"><a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[1] ?>"><?= $admin->paginationGetPageNumber($page)[1] ?></a></li>
+
+                <li class="page-item">
+                    <a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[2] ?>">Suivant</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 <?php

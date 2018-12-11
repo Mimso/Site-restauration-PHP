@@ -8,7 +8,6 @@ load_header('Panel Administration - Accueil');
 
 require_once('../app/Admin.php');
 $admin = new Admin();
-
 ?>
     <div class="row">
         <div class="col-2">

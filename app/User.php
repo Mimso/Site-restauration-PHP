@@ -4,14 +4,16 @@ class User {
 
     public $result, $id;
 
-    public function __construct($id)
+    public function __construct($id = null)
     {
         $this->id = $id;
 
-        $pdo = new PDOConnect();
-        $query = $pdo->pdo_start()->prepare("SELECT * FROM users WHERE id = ?");
-        $query->execute([$this->id]);
-        $this->result = $query->fetch(PDO::FETCH_ASSOC);
+        if ($id != null) {
+            $pdo = new PDOConnect();
+            $query = $pdo->pdo_start()->prepare("SELECT * FROM users WHERE id = ?");
+            $query->execute([$this->id]);
+            $this->result = $query->fetch(PDO::FETCH_ASSOC);
+        }
     }
 
     public function getFirstName() {
@@ -50,6 +52,45 @@ class User {
         $nowObject = new DateTime();
         $diff = $dobObject->diff($nowObject);
         return $diff->y;
+    }
+
+    public function createUser($email, $firstname, $lastname, $phone, $password, $birthday, $postal)
+    {
+        $pdo = new PDOConnect();
+        $query = $pdo->pdo_start()->prepare("SELECT email, phone FROM users WHERE email = ? OR phone = ?");
+        $query->execute([
+            $email,
+            $phone
+        ]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($query->rowCount()) {
+            return 0;
+        } else {
+            $query = $pdo->pdo_start()->prepare("INSERT INTO `users`(`email`, `firstname`, `lastname`, `password`, `phone`, `birthday`, `postal`) VALUES (?,?,?,?,?,?,?)");
+            $query->execute([
+                $email,
+                $firstname,
+                $lastname,
+                md5($password),
+                $phone,
+                $birthday,
+                $postal
+            ]);
+            /*
+            $to = $email;
+            $subject = 'Inscription de ' . $lastname . ' ' . $firstname;
+            $message = 'Bonjour ' . $lastname . ' je confirme ton inscription sur ' . SITE_NAME . ' avec l\'email : ' . $email;
+            $headers = array(
+                'From' => 'webmaster@localhost',
+                'Reply-To' => 'webmaster@localhost',
+                'X-Mailer' => 'PHP/' . phpversion()
+            );
+
+            mail($to, $subject, $message, $headers);
+            */
+            return 1;
+        }
     }
 
 

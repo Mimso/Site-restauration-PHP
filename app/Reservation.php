@@ -44,7 +44,7 @@ class Reservation {
         }
     }
 
-    public function spaceAvailableByDate($date) {
+    public function spaceAvailableByDate($date, $nb) {
 
         $pdo = new PDOConnect();
         $date = new DateTime($date);
@@ -57,7 +57,8 @@ class Reservation {
         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $data) {
             $number = $number + $data['number'];
         }
-        return $number;
+
+        return $number + $nb;
 
     }
 }

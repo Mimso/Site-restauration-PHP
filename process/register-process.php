@@ -39,51 +39,19 @@ if($_POST['password'] != $_POST['password2']) {
     header('location: ' . root_folder . '/register.php');
 }
 
-$pdo = new PDOConnect();
+$user = new User();
+$register = $user->createUser($email, $firstname, $lastname, $phone, $password, $birthday, $postal);
 
-$query = $pdo->pdo_start()->prepare("SELECT email, phone FROM users WHERE email = ? OR phone = ?");
-$query->execute([
-    $email,
-    $phone
-]);
-$result = $query->fetch(PDO::FETCH_ASSOC);
-
-if($query->rowCount()) {
+if($register == 0) {
     $session->create('message', 'Erreur, cette email ou ce numéro de téléphone est déjà enrengistrer.');
     $session->create('message-box-color', 'alert-danger');
 
     header('location: ' . root_folder . '/register.php');
-    exit();
 } else {
-    $query = $pdo->pdo_start()->prepare("INSERT INTO `users`(`email`, `firstname`, `lastname`, `password`, `phone`, `birthday`, `postal`) VALUES (?,?,?,?,?,?,?)");
-    $query->execute([
-        $email,
-        $firstname,
-        $lastname,
-        md5($password),
-        $phone,
-        $birthday,
-        $postal
-    ]);
-
-    /* envoie mail confirmation */
-    $to      = $email;
-    $subject = 'Inscription de ' . $lastname . ' ' . $firstname;
-    $message = 'Bonjour ' . $lastname . ' je confirme ton inscription sur ' . SITE_NAME . ' avec l\'email : ' . $email;
-    $headers = array(
-        'From' => 'webmaster@localhost',
-        'Reply-To' => 'webmaster@localhost',
-        'X-Mailer' => 'PHP/' . phpversion()
-    );
-
-    mail($to, $subject, $message, $headers);
-    /* fin envoie mail */
-
     $session->create('message', 'Inscription réussi.');
     $session->create('message-box-color', 'alert-success');
-    $pdo->pdo_close();
     header('location: ' . root_folder . '/login.php');
-
 }
+
 
 ?>
