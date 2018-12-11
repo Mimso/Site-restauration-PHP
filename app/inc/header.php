@@ -58,7 +58,7 @@ $session = new SessionManagment();
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" <?= $user->isAdmin() ? 'style="color:  #009933"' : '' ?> href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?= ucfirst($user->getLastName()) .'&nbsp;'. strtoupper($user->getFirstName()); ?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                         <?= $user->isAdmin() ? '<a class="dropdown-item" style="color: #009933" href="' . root_folder . '/admin/"><i class="fas fa-cog"></i> Panel Admin</a>' : ''; ?>
+                         <?= $user->isAdmin() ? '<a class="dropdown-item" style="color: #009933" href="' . root_folder . '/admin"><i class="fas fa-cog"></i> Panel Admin</a>' : ''; ?>
                         <a class="dropdown-item" href="<?= root_folder; ?>/member.php"><i class="fas fa-user-circle"></i> Mon profil</a>
 
                         <div class="dropdown-divider"></div>

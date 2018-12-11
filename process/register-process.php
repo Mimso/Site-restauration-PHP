@@ -12,7 +12,7 @@ if(isset($_COOKIE['user'])) {
 }
 
 /* verification du bon envoie des données */
-if(empty($_POST['firstname']) OR empty($_POST['lastname']) OR empty($_POST['password']) OR empty($_POST['password2') OR empty($_POST['email']) OR empty($_POST['postal']) OR empty($_POST['birthday']) OR empty($_POST['phone'])) {
+if(empty($_POST['firstname']) OR empty($_POST['lastname']) OR empty($_POST['password']) OR empty($_POST['password2']) OR empty($_POST['email']) OR empty($_POST['postal']) OR empty($_POST['birthday']) OR empty($_POST['phone'])) {
     $session->create('message', 'Erreur, un des champs est manquant.');
     $session->create('message-box-color', 'alert-danger');
 

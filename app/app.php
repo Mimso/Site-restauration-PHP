@@ -10,6 +10,7 @@ require_once('SessionManagment.php');
 
 if(isset($_COOKIE['user'])) {
     require_once('User.php');
+    require_once('Reservation.php');
 }
 
 $session = new SessionManagment();

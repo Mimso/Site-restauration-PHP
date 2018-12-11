@@ -15,7 +15,7 @@ load_header($page_name);
 
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="date" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
                 </div>
                 <button type="submit" id="submit" name="submit" class="btn btn-primary">Connexion</button>
             </form>

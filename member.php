@@ -12,11 +12,13 @@ if(empty($_COOKIE['user'])) {
     header('location: ' . root_folder . '/login.php');
 } else {
     $user = new User($_COOKIE['user']);
+    $reservation = new Reservation();
     load_header($page_name);
-    ?>
+?>
 
     <div class="row">
         <div class="offset-2 col-md-8">
+
             <div class="card">
                 <h5 class="card-header">Information de profil</h5>
                 <div class="row card-body">
@@ -48,13 +50,49 @@ if(empty($_COOKIE['user'])) {
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="row" style="padding-top: 15px;">
         <div class="offset-2 col-md-8">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="card">
+                <h5 class="card-header">Mes reservation</h5>
+                <div class="row card-body">
+
+                 <?php
+                     $reservation_datas = $reservation->getBookingById($_COOKIE['user']);
+
+                     if($reservation_datas != null) {
+                        foreach($reservation->getBookingById($_COOKIE['user']) as $res) {
+                        $date = new DateTime($res['date']);
+                 ?>
+
+                    <div class="col-md-6" style="padding-top: 20px; padding-left: 30px;">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" height="160px" width="100%" src="<?= $res['image']; ?>" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $res['name']; ?>
+                                    <div class="float-right">
+                                        <a href="<?= root_folder; ?>/process/delete-booking.php?id=<?= $res['reservation_id']; ?>"><button class="btn btn-sm btn-danger"><i class="far fa-times-circle"></i></button></a>
+                                    </div>
+                                </h5>
+                                <p class="card-text"><?= mb_strimwidth($res['desc'], 0, 120, '...'); ?></p>
+                            </div>
+
+                            <div class="card-footer">
+                                <span class="badge badge-success">le <?= $date->format('d/m/Y') ?></span>
+                                <div class="float-right">
+                                    <span class="badge badge-success">Pour <?= $res['number']; ?> <?=$res['number'] > 1 ? "personnes" : "personne"; ?></span>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <span class="badge badge-info">Prix <?= $res['price']; ?>€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } } else { echo '<div class="col-md-12"><span class="badge badge-info">Aucune reservation</span></div>'; } ?>
                 </div>
             </div>
         </div>
