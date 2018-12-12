@@ -1,5 +1,6 @@
 <?php
 
+/* class de connexion SQL */
 class PDOConnect {
 
     public function __construct($sql = ["localhost", "rest", "root", null]) {

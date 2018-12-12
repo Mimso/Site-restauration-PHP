@@ -17,6 +17,7 @@ $admin = new Admin();
                 <a class="list-group-item list-group-item-action" href="./menu.php" role="tab" aria-controls="menu">Menu</a>
                 <a class="list-group-item list-group-item-action" href="./booking.php" role="tab" aria-controls="res">Reservation</a>
                 <a class="list-group-item list-group-item-action" href="./support.php" role="tab" aria-controls="support">Support</a>
+                <a class="list-group-item list-group-item-action" href="./comment.php" role="tab" aria-controls="comment">Commentaires</a>
             </div>
         </div>
         <div class="col-10">

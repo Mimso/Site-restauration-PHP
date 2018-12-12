@@ -1,6 +1,7 @@
 <?php
 require_once('../app/app.php');
 
+/* déconnexion */
 if(isset($_COOKIE['user'])) {
 
     unset($_COOKIE['user']);

@@ -1,0 +1,9 @@
+{
+    "Nom": "admin",
+    "Prenom": "admin",
+    "Email": "admin@admin",
+    "Telephone": "test",
+    "Identifiant menu": "2",
+    "Nombre de personne": "10",
+    "Date de reservation": "2019-01-11"
+}

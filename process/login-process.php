@@ -1,6 +1,7 @@
 <?php
 require_once('../app/app.php');
 
+/* systeme de connexion de l'utilisateur */
 if(isset($_COOKIE['user'])) {
 
     $session->create('message', 'Vous etez déjà connecté.');
@@ -22,7 +23,7 @@ if(isset($_COOKIE['user'])) {
     $result = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($query->rowCount() == 1) {
-        $session->create('message', 'Connection réussi.');
+        $session->create('message', 'Connexion réussie.');
         $session->create('message-box-color', 'alert-success');
         setcookie('user', $result['id'], time() + 86400*10, '/');
         $pdo->pdo_close();

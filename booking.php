@@ -23,7 +23,7 @@ include_once ('app/Menu.php');
 
                 <?php } ?>
                 </select>
-                
+
                 <br style="clear:both">
 
                 <div class="form-group">

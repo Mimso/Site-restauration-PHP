@@ -11,9 +11,11 @@ if(empty($_COOKIE['user'])) {
 
     header('location: ' . root_folder . '/login.php');
 } else {
+
     $user = new User($_COOKIE['user']);
     $reservation = new Reservation();
     load_header($page_name);
+
 ?>
 
     <div class="row">
@@ -46,6 +48,8 @@ if(empty($_COOKIE['user'])) {
                         <span class="card-text">Numéro de Téléphone : <?= $user->getPhone(); ?></span>
                         <br>
                         <span class="card-text">Groupe : <?= ucfirst(strtolower($user->getPermission())); ?></span>
+                        <br>
+                        <span class="card-text"><a href="<?= resources_uri . '/download/reservation-' . md5($user->getEmail()) . '.txt'; ?>">Télécharger votre fichier de reservation</a></span>
                     </div>
                 </div>
             </div>
@@ -68,7 +72,7 @@ if(empty($_COOKIE['user'])) {
 
                     <div class="col-md-6" style="padding-top: 20px; padding-left: 30px;">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" height="160px" width="100%" src="<?= $res['image']; ?>" alt="Card image cap">
+                            <img class="card-img-top menuimg" height="160px" src="<?= $res['image']; ?>" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $res['name']; ?>
                                     <div class="float-right">
@@ -87,7 +91,7 @@ if(empty($_COOKIE['user'])) {
 
                             <div class="card-footer">
                                 <div class="float-right">
-                                    <span class="badge badge-info">Prix <?= $res['price']; ?>€</span>
+                                    <span class="badge badge-info">Prix <?= $res['price']; ?>€ / Unité</span>
                                 </div>
                             </div>
                         </div>

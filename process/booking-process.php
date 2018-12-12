@@ -45,6 +45,19 @@ if($res->spaceAvailableByDate($res_date, $number) <= 40) {
     $booking = $res->createBooking($user_id, $menu_id, $number, $res_date);
 
     if($booking == true) {
+
+        $user = new User($user_id);
+        $json = json_encode([
+            "Nom" => $user->getFirstName(),
+            "Prenom" => $user->getLastName(),
+            "Email" => $user->getEmail(),
+            "Telephone" => $user->getPhone(),
+            "Identifiant menu" => $menu_id,
+            "Nombre de personne" => $number,
+            "Date de reservation" => $res_date
+        ], JSON_PRETTY_PRINT);
+        $create_file = $res->FileEdit("../resources/download/reservation-" . md5($user->getEmail()) . ".txt", $json);
+
         $session->create('message', 'Votre reservation a été prise en compte.');
         $session->create('message-box-color', 'alert-success');
         header('location: ' . root_folder . '/index.php');

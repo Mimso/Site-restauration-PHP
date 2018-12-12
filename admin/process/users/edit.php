@@ -11,6 +11,7 @@ require_once('../../../app/Admin.php');
 $admin = new Admin();
 isset($_GET['id']) ? $id = $_GET['id'] : $id = null;
 
+/* variable contenant les informations de l'utilisateur charger grace a une classe */
 $u = $admin->getUserById($id);
 
 if($u == false) {

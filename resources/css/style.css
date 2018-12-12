@@ -22,6 +22,35 @@ td, th {
     border: 1px solid #ddd;
     padding: 5px;
 }
+.card-m {
+    height: 130px;
+    width: 260px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.card-u {
+    height: 120px;
+    width: 120px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
 #map{
     height:400px;
+}
+
+.menuimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+.menuimg2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 150px;
 }

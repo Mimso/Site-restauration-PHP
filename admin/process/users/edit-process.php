@@ -30,6 +30,7 @@ $phone = htmlspecialchars($_POST['phone']);
 $pdo = new PDOConnect();
 $id = $_GET['id'];
 
+/* edition de l'utilisateur */
 if($admin->editUserById($id, $firstname, $email, $postal, $birthday, $phone, $lastname) == true) {
     $session->create('message', 'Modification du profil effectuer.');
     $session->create('message-box-color', 'alert-success');

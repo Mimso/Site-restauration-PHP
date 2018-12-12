@@ -47,11 +47,16 @@ class User {
         return $this->result['permission'] == "ADMIN" ? true : false;
     }
 
+    /* affichage de l'age de la personne selon sa date de naissance */
     public function getAge() {
         $dobObject = new DateTime(date("Y/m/d",strtotime($this->getBirthday())));
         $nowObject = new DateTime();
         $diff = $dobObject->diff($nowObject);
         return $diff->y;
+    }
+
+    public function PasswordReset() {
+        //
     }
 
     public function createUser($email, $firstname, $lastname, $phone, $password, $birthday, $postal)
@@ -77,6 +82,11 @@ class User {
                 $birthday,
                 $postal
             ]);
+            /*
+             * mail system (ne marche pas sans serveur SMTP) !!
+             *
+             */
+
             /*
             $to = $email;
             $subject = 'Inscription de ' . $lastname . ' ' . $firstname;

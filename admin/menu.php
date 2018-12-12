@@ -25,6 +25,7 @@ if(isset($_GET['p'])) {
             <a class="list-group-item list-group-item-action active" href="#" role="tab" aria-controls="menu">Menu</a>
             <a class="list-group-item list-group-item-action" href="./booking.php" role="tab" aria-controls="res">Reservation</a>
             <a class="list-group-item list-group-item-action" href="./support.php" role="tab" aria-controls="support">Support</a>
+            <a class="list-group-item list-group-item-action" href="./comment.php" role="tab" aria-controls="comment">Commentaires</a>
         </div>
     </div>
 
@@ -54,20 +55,25 @@ if(isset($_GET['p'])) {
             <?php } ?>
             </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
+        <div class="float-left">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
 
-                <li class="page-item <?= $admin->paginationGetPageNumber($page)[0] == 0 ? 'disabled' : ''; ?>">
-                    <a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[0] ?>" tabindex="-1">Précédent</a>
-                </li>
+                    <li class="page-item <?= $admin->paginationGetPageNumber($page)[0] == 0 ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="menu.php?p=<?= $admin->paginationGetPageNumber($page)[0] ?>" tabindex="-1">Précédent</a>
+                    </li>
 
-                <li class="page-item disabled"><a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[1] ?>"><?= $admin->paginationGetPageNumber($page)[1] ?></a></li>
+                    <li class="page-item disabled"><a class="page-link" href="menu.php?p=<?= $admin->paginationGetPageNumber($page)[1] ?>"><?= $admin->paginationGetPageNumber($page)[1] ?></a></li>
 
-                <li class="page-item">
-                    <a class="page-link" href="booking.php?p=<?= $admin->paginationGetPageNumber($page)[2] ?>">Suivant</a>
-                </li>
-            </ul>
-        </nav>
+                    <li class="page-item">
+                        <a class="page-link" href="menu.php?p=<?= $admin->paginationGetPageNumber($page)[2] ?>">Suivant</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="float-right">
+            <a class="btn btn-primary" href="<?= root_folder . '/admin/menu_new.php'; ?> ">Ajouter un menu</a>
+        </div>
     </div>
 </div>
 <?php

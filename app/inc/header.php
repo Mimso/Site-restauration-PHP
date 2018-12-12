@@ -20,6 +20,7 @@ $session = new SessionManagment();
     <link href="<?= resources_uri; ?>/css/style.css?v=<?= rand(); ?>" rel="stylesheet">
 </head>
 
+<!-- BODY -->
 <body>
 
 <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">

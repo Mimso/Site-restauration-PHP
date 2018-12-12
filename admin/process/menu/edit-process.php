@@ -7,6 +7,7 @@ include_once ('../../inc/admin.inc.php');
 load_header('Panel Administration - Menu');
 
 require_once('../../../app/Admin.php');
+
 $admin = new Admin();
 
 /* verification du bon envoie des données */
@@ -25,8 +26,9 @@ $desc = htmlspecialchars($_POST['desc']);
 $price = htmlspecialchars($_POST['price']);
 $image = htmlspecialchars($_POST['image']);
 
-
+/* initialisation connexion PDO */
 $pdo = new PDOConnect();
+
 $id = $_GET['id'];
 
 if($admin->editMenuById($id, $name, $desc, $price, $image) == true) {

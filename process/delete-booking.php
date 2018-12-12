@@ -1,6 +1,8 @@
 <?php
 require_once('../app/app.php');
 
+/* suppression d'une reservation par rapport a son id */
+
 if(empty($_COOKIE['user'])) {
     $session->create('message', 'Erreur vous n\'etez pas connecté.');
     $session->create('message-box-color', 'alert-danger');

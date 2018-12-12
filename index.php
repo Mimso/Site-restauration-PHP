@@ -19,8 +19,8 @@ load_header($page_name);
             <div class="carousel-item active">
                 <img class="d-block w-100" height="540px" width="100%"  src="resources/images/carousel.1.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Bienvenue sur notre site</h5>
-                    <p>ceci est un message test</p>
+                    <h5>Bienvenue sur <?= SITE_NAME; ?></h5>
+                    <p>Venez découvrir nos nombreux burgers.</p>
                 </div>
             </div>
             <div class="carousel-item">

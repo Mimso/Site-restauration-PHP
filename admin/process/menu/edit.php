@@ -1,22 +1,30 @@
 <?php
 
-include('../../../app/app.php');
+/* include the main script of the site */
+include_once ('../../../app/app.php');
 
+/* include admin requirements */
 include_once ('../../inc/admin.inc.php');
 
-
+/* chargement header */
 load_header('Panel Administration - Menu');
 
+
 require_once('../../../app/Admin.php');
+
+/* initialisation class admin */
 $admin = new Admin();
+
+/* verification de l'envoie de l'id en GET */
 isset($_GET['id']) ? $id = $_GET['id'] : $id = null;
 
-
+/* si erreur */
 if($admin->getMenuById($id) == false) {
     $session->create('message', 'Erreur dans la modification du menu.');
     $session->create('message-box-color', 'alert-danger');
     header('location: ' . root_folder . '/admin/menu.php');
 
+    /* sinon affichage */
 } else {
 
     ?>

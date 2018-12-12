@@ -15,6 +15,7 @@ if(empty($_GET['id'])) {
 require_once('../../../app/Admin.php');
 $admin = new Admin();
 
+/* suppression d'un utilisateur */
 if($admin->delUserById($id) != false) {
 
     $session->create('message', 'Utilisateur supprimer avec succes.');

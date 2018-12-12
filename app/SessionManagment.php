@@ -6,6 +6,8 @@
  * Time: 09:13
  */
 
+/* gestion des sessions*/
+
 class SessionManagment {
 
      public function create($name, $value) {
@@ -20,6 +22,7 @@ class SessionManagment {
          return $_SESSION[$name];
     }
 
+    /* session flash qui se détruit apres utilisation */
     public function flash($name) {
          $session = $_SESSION[$name];
          unset($_SESSION[$name]);

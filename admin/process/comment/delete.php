@@ -10,7 +10,7 @@ include_once ('../../inc/admin.inc.php');
 if(empty($_GET['id'])) {
     $session->create('message', 'Erreur aucun identifiant trouver.');
     $session->create('message-box-color', 'alert-info');
-    header('location: ' . root_folder . '/admin/booking.php');
+    header('location: ' . root_folder . '/admin/comment.php');
 } else {
     $id = $_GET['id'];
 }
@@ -24,14 +24,14 @@ $admin = new Admin();
  * si FALSE alors on affiche success
  * si TRUE alors on affiche error
  */
-if($admin->delBookingById($id) != false) {
+if($admin->delCommentById($id) != false) {
 
-    $session->create('message', 'Reservation supprimer avec succes.');
+    $session->create('message', 'Commentaire supprimer avec succes.');
     $session->create('message-box-color', 'alert-success');
-    header('location: ' . root_folder . '/admin/booking.php');
+    header('location: ' . root_folder . '/admin/comment.php');
 
 } else {
-    $session->create('message', 'Erreur impossible de supprimer votre reservation.');
+    $session->create('message', 'Erreur impossible de supprimer le commentaire.');
     $session->create('message-box-color', 'alert-danger');
-    header('location: ' . root_folder . '/admin/booking.php');
+    header('location: ' . root_folder . '/admin/comment.php');
 }
