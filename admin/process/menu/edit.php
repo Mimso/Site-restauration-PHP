@@ -1,6 +1,6 @@
 <?php
 
-/* include the main script of the site */
+/* include le script principal */
 include_once ('../../../app/app.php');
 
 /* include admin requirements */
@@ -18,13 +18,12 @@ $admin = new Admin();
 /* verification de l'envoie de l'id en GET */
 isset($_GET['id']) ? $id = $_GET['id'] : $id = null;
 
-/* si erreur */
+/* affichage du formulaire */
 if($admin->getMenuById($id) == false) {
     $session->create('message', 'Erreur dans la modification du menu.');
     $session->create('message-box-color', 'alert-danger');
     header('location: ' . root_folder . '/admin/menu.php');
 
-    /* sinon affichage */
 } else {
 
     ?>

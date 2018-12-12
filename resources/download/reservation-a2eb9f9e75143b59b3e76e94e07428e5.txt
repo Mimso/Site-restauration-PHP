@@ -1,0 +1,25 @@
+{
+    "Nom": "ADMIN",
+    "Prenom": "",
+    "Email": "admin@central-burger.ml",
+    "Telephone": "0388999360",
+    "Identifiant menu": "2",
+    "Nombre de personne": "10",
+    "Date de reservation": "2018-12-15"
+},{
+    "Nom": "ADMIN",
+    "Prenom": "",
+    "Email": "admin@central-burger.ml",
+    "Telephone": "0388999360",
+    "Identifiant menu": "4",
+    "Nombre de personne": "23",
+    "Date de reservation": "2018-12-20"
+},{
+    "Nom": "ADMIN",
+    "Prenom": "",
+    "Email": "admin@central-burger.ml",
+    "Telephone": "0388999360",
+    "Identifiant menu": "1",
+    "Nombre de personne": "1",
+    "Date de reservation": "2018-12-12"
+}

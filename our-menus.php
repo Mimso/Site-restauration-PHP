@@ -17,7 +17,7 @@ load_header($page_name);
                     <h5 class="card-title"><a style="text-decoration: none; color: #007bff;" href="<?= root_folder; ?>/menu-information.php?mid=<?= $data['id']; ?>"><?= $data['name']; ?></a></h5>
                     <p class="card-text"><?= mb_strimwidth($data['desc'], 0, 130, '...') ?></p>
                 </div>
-                <div class="card-body">
+                <div class="card-footer">
                     <div class="float-left">
                         <a class="btn btn-primary btn-sm" href="<?= root_folder; ?>/menu-information.php?mid=<?= $data['id']; ?>">Information</a>
                     </div>
@@ -25,9 +25,6 @@ load_header($page_name);
                         <a href="<?= root_folder; ?>/booking.php?id=<?= $data['id']; ?>" class="btn btn-primary btn-sm float-left">Réserver</a>
                     </div>
                     <span class="float-right"><?= $data['price']; ?> €</span>
-                </div>
-                <div class="card-footer">
-
                 </div>
             </div>
         </div>

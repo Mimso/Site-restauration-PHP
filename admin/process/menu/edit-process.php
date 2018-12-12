@@ -1,8 +1,9 @@
 <?php
+
+/* include le script principal */
 include('../../../app/app.php');
 
 include_once ('../../inc/admin.inc.php');
-
 
 load_header('Panel Administration - Menu');
 

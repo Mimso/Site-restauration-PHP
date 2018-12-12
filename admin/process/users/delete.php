@@ -1,5 +1,6 @@
 <?php
 
+/* include le script principal */
 include_once ('../../../app/app.php');
 
 include_once ('../../inc/admin.inc.php');

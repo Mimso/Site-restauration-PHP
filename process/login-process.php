@@ -9,31 +9,35 @@ if(isset($_COOKIE['user'])) {
 
     header('location: ' . root_folder . '/index.php');
 
-} else {
-    $email = htmlspecialchars($_POST['email']);
-    $password = htmlspecialchars($_POST['password']);
-
-    $pdo = new PDOConnect();
-
-    $query = $pdo->pdo_start()->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
-    $query->execute([
-        $email,
-        md5($password)
-    ]);
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-
-    if ($query->rowCount() == 1) {
-        $session->create('message', 'Connexion réussie.');
-        $session->create('message-box-color', 'alert-success');
-        setcookie('user', $result['id'], time() + 86400*10, '/');
-        $pdo->pdo_close();
-        header('location: ' . root_folder . '/index.php');
-
-    } else {
-        $session->create('message', 'Erreur lors de la connexion, merci de ré-essayer.');
-        $session->create('message-box-color', 'alert-danger');
-        $pdo->pdo_close();
-        header('location: ' . root_folder . '/login.php');
-    }
 }
-?>
+
+/* verification du bon envoie des données */
+if(empty($_POST['email']) || empty($_POST['password'])) {
+    $session->create('message', 'Erreur, un des champs est manquant.');
+    $session->create('message-box-color', 'alert-danger');
+
+    header('location: ' . root_folder . '/login.php');
+}
+
+/*
+ * definition des variables avec une fonction anti injection SQL
+ * @link https://php.net/manual/en/function.htmlspecialchars.php
+ */
+$email = htmlspecialchars($_POST['email']);
+$password = htmlspecialchars($_POST['password']);
+
+$user = new User();
+$log = $user->log($email, $password);
+
+
+if($log) {
+    $session->create('message', 'Connexion réussie.');
+    $session->create('message-box-color', 'alert-success');
+    setcookie('user', $log['id'], time() + 86400*10, '/');
+    header('location: ' . root_folder . '/index.php');
+} else {
+    $session->create('message', 'Erreur lors de la connexion, merci de ré-essayer.');
+    $session->create('message-box-color', 'alert-danger');
+    header('location: ' . root_folder . '/login.php');
+}
+

@@ -1,6 +1,6 @@
 <?php
 
-/* include the main script of the site */
+/* include le script principal */
 include_once ('../../../app/app.php');
 
 /* include admin requirements */

@@ -18,9 +18,7 @@ include_once ('app/Menu.php');
                 $menu = new Menu();
                 foreach($menu->getAllMenu() as $data) {
                 ?>
-
-                 <option value="<?= $data['id']; ?>"><?= $data['name']; ?></option>
-
+                <option value="<?= $data['id']; ?>" <?= isset($_GET['id']) && $_GET['id'] == $data['id'] ? "selected" : '' ?>><?= $data['name']; ?></option>
                 <?php } ?>
                 </select>
 

@@ -40,6 +40,7 @@ $user_id = $_COOKIE['user'];
 
 $res = new Reservation();
 
+/* verification qu'il y a bien moins de 40 personne pour la date indiquer */
 if($res->spaceAvailableByDate($res_date, $number) <= 40) {
 
     $booking = $res->createBooking($user_id, $menu_id, $number, $res_date);

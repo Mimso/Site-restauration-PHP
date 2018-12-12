@@ -55,10 +55,22 @@ class User {
         return $diff->y;
     }
 
+    public function log($email, $password) {
+        $pdo = new PDOConnect();
+        $query = $pdo->pdo_start()->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+        $query->execute([
+            $email,
+            md5($password)
+        ]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function PasswordReset() {
         //
     }
 
+    /* fonction permettant de créer un utilisateurs */
     public function createUser($email, $firstname, $lastname, $phone, $password, $birthday, $postal)
     {
         $pdo = new PDOConnect();

@@ -1,8 +1,6 @@
 <?php
 
 /* verification que l'utilisateur est bien connecté
- * true : null
- * false : SESSION[message] + redirect
  */
 if(empty($_COOKIE['user'])) {
     $session->create('message', 'Erreur vous n\'etes pas connecté.');
