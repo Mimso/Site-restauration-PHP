@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://mimso.net/github/demo/restaurant-php" target="_blank">
-    <img src="http://central-burger.ml/resources/images/logo.png" height="150px" width="150px">
+    <img src="https://raw.githubusercontent.com/Mimso/Site-restauration-PHP/master/resources/images/logo.png" height="150px" width="150px">
   </a>
 </p>
 
@@ -43,4 +43,4 @@ Fonctionnalités en cours d'implémentation
 
 # Information Divers
 
-- <a href="http://mimso.net/resources/github/site-restauration-php-guide.pdf">Lien du guide d'utilisation</a>
+- <a href="https://github.com/Mimso/Site-restauration-PHP/raw/master/resources/download/guide.pdf">Lien du guide d'utilisation</a>
