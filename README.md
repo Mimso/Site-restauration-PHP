@@ -5,7 +5,7 @@
 </p>
 
 Ce petit projet en PHP est un site de présentation pour un restaurant implémentant plusieurs fonctionnalité.
-Ce site de restauration à été crée à l'aide de différents langage de programmation tel que le PHP coté serveur et l'HTML, CSS JS coté client.
+Ce site de restauration à été crée à l'aide de différents langages de programmation tel que le PHP coté serveur et l'HTML, CSS JS coté client.
 Ce projet a été réalisé dans le cadre d'un projet scolaire sur le test de nos aptitude en PHP.
 
 # Installation
