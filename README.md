@@ -4,20 +4,20 @@
   </a>
 </p>
 
-Ce petit projet en PHP est un site de présentation pour un restaurant implémentant plusieurs fonctionnalité.
-Ce site de restauration à été crée à l'aide de différents langages de programmation tel que le PHP coté serveur et l'HTML, CSS JS coté client.
-Ce projet a été réalisé dans le cadre d'un projet scolaire sur le test de nos aptitude en PHP.
+Ce petit projet en PHP est un site de présentation pour un restaurant implémentant plusieurs fonctionnalités.
+Ce site de restauration à été créé à l'aide de différents langages de programmation tels que le PHP coté serveur et l'HTML, CSS JS coté client.
+Ce projet a été réalisé dans le cadre d'un projet scolaire sur le test de nos aptitudes en PHP.
 
 # Installation
 
-Pour l'installation il suffit de modifier les ligne de configuration se trouvant dans le fichier *App/app.php*
+Pour l'installation il suffit de modifier les lignes de configuration se trouvant dans le fichier *App/app.php*
 Vous aurez donc simplement à modifier les lignes suivantes : 
 
 > const SITE_NAME = "My website name";
 >
 > const root_folder = "http://my.link";
 
-En y inscrivant le nom de votre propre site ainse que son url.
+En y inscrivant le nom de votre propre site ainsi que son url.
 
 Ensuite importer dans votre base MySQL les différentes tables contenues dans : 
 
@@ -29,13 +29,13 @@ Avancement global  :
 
    ![Progress](http://progressed.io/bar/85)
      
-Système déjà ajouté
+Fonctionnalités implementées
 
    - Connexion / Inscription / Gestion utilisateur
    - Panel d'Administration
    - Affichage des Menus
 
-Systeme en cours de création
+Fonctionnalités en cours d'implémentation
 
    - Amélioration de la sécurité (Faille Sql / Injection)  :  
    
