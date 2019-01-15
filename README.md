@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="[2]" target="_blank">
+  <a href="http://mimso.net/github/demo/restaurant-php" target="_blank">
     <img src="http://central-burger.ml/resources/images/logo.png" height="150px" width="150px">
   </a>
 </p>
@@ -19,7 +19,7 @@ Vous aurez donc simplement à modifier les lignes suivantes :
 
 En y inscrivant le nom de votre propre site ainse que son url.
 
-Ensuite importer dans votre base MySQL les différentes table contenues dans : 
+Ensuite importer dans votre base MySQL les différentes tables contenues dans : 
 
 > Site-restauration-PHP/bdd-restaurant.sql
 
@@ -37,13 +37,10 @@ Système déjà ajouté
 
 Systeme en cours de création
 
-   - Amélioration de la sécuriter (Faille Sql / Injection)  :  
+   - Amélioration de la sécurité (Faille Sql / Injection)  :  
    
        ![Progress](http://progressed.io/bar/20)
 
 # Information Divers
 
-- <a href="[1]">Lien du guide d'utilisation</a>
-
-[1]: http://mimso.net/resources/github/site-restauration-php-guide.pdf
-[2]: http://mimso.net/github/demo
+- <a href="http://mimso.net/resources/github/site-restauration-php-guide.pdf">Lien du guide d'utilisation</a>
